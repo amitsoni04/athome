@@ -4,7 +4,7 @@ pipeline {
 
     steps {
 
-      step (build with run) {
+      step ("build with run") {
 
         script {
           sh 'docker build -t homebuild .'
