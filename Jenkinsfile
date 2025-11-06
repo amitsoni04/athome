@@ -2,15 +2,18 @@ pipeline {
 
     agent any
 
-    steps {
+    stages {
 
-      step ("build with run") {
+      stage('build and run') {
+
+      steps {
 
         script {
           sh 'docker build -t homebuild .'
-          sh ''' grep -q -f homebuild | docker stop homebuild && docker rm -f homebuild '''
+          sh ''' docker ps -q --filter name=homebuild | docker stop homebuild && docker rm -f homebuild | true '''
           sh 'docker run -d --name homebuild -p 80:80 homebuild'
          }
         }
        }
       }
+     }
