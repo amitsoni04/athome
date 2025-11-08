@@ -10,7 +10,7 @@ pipeline {
 
         script {
           sh 'docker build -t homebuild .'
-          sh ''' docker ps -q --filter name=homebuild | docker stop homebuild && docker rm -f homebuild | true '''
+          sh ''' docker ps -q --filter name=myhome | docker stop myhome && docker rm -f homebuild '''
           sh 'docker run -d --name homebuild -p 80:80 homebuild'
          }
         }
